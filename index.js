@@ -1,7 +1,7 @@
 var blessed = require('blessed')
   , program = blessed.program();
 
-const current = '\033[36m ▩\033[0m';
+const current = '\033[35m ▩\033[0m';
 const dead = '  ';
 let gameBoard = [];
 let currentGame;
@@ -34,32 +34,6 @@ screen.on('keypress', function (data, key) {
       program.showCursor();
       program.normalBuffer();
       process.exit(0);
-    }
-    if (key.name === '1' || key.name === '2' || key.name === '3'){
-        screen.render();
-        cleanScreen()
-        screen.render();
-        
-        const fs = require('fs'); 
-        if (key.name === '1'){
-            let rawdata = fs.readFileSync('1.json'); 
-            alive = JSON.parse(rawdata)
-            setBoard(alive)
-            box.setContent(currentGame)
-        }
-        else if (key.name === '2'){
-            let rawdata = fs.readFileSync('2.json');
-            alive = JSON.parse(rawdata)
-            setBoard(alive)
-            box.setContent(currentGame)
-        }
-        else if (key.name === '3'){
-            let rawdata = fs.readFileSync('3.json');
-            alive = JSON.parse(rawdata)
-            setBoard(alive)
-            box.setContent(currentGame)
-        }
-        screen.render();
     }
 });
 
@@ -212,4 +186,4 @@ setInterval(() => {
     joinArray(currentGame);
     box.setContent(currentGame);
     screen.render();
-},100)
+},200)
